@@ -51,6 +51,13 @@ namespace WindowsFormsApp_231024_231098
 
                 Comando.ExecuteNonQuery();
 
+                Comando = new MySqlCommand("CREATE TABLE IF NOT EXISTS Cidades"+
+                                           "(id integer auto_increment primary key, "+
+                                           "nome char(40), "+
+                                           "uf char(02))", Conexao);
+
+                Comando.ExecuteNonQuery();
+
                 FecharConexao();
             }
             catch (Exception e)
