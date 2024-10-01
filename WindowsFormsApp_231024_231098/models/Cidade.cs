@@ -73,8 +73,8 @@ namespace WindowsFormsApp_231024_231098.Models
             try
             {
                 Banco.AbrirConexao();
-                Banco.Comando = new MySqlCommand("Select * from cidades where nome like @Nome" + "order by nome", Banco.Conexao);
-                Banco.Comando.Parameters.AddWithValue("@Nome", nome + "%");
+                Banco.Comando = new MySqlCommand("Select * from cidades where nome like @nome " + " order by nome", Banco.Conexao);
+                Banco.Comando.Parameters.AddWithValue("@nome", nome + "%");
                 Banco.Adaptador = new MySqlDataAdapter(Banco.Comando);
                 Banco.datTabela = new DataTable();
                 Banco.Adaptador.Fill(Banco.datTabela);
