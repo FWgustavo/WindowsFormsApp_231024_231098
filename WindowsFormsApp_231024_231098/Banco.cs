@@ -26,6 +26,7 @@ namespace WindowsFormsApp_231024_231098
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                FecharConexao();
             }
 
         }
@@ -51,8 +52,8 @@ namespace WindowsFormsApp_231024_231098
 
                 Comando.ExecuteNonQuery();
 
-                Comando = new MySqlCommand("CREATE TABLE IF NOT EXISTS Cidades"+
-                                           "(id integer auto_increment primary key, "+
+                Comando = new MySqlCommand("CREATE TABLE IF NOT EXISTS cidades"+
+                                           "(id int auto_increment primary key, "+
                                            "nome char(40), "+
                                            "uf char(02))", Conexao);
 
@@ -63,6 +64,7 @@ namespace WindowsFormsApp_231024_231098
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                FecharConexao();
             }
         }
     }
