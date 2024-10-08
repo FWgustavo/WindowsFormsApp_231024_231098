@@ -4,47 +4,21 @@ using WindowsFormsApp_231024_231098.Models;
 
 namespace WindowsFormsApp_231024_231098.Views
 {
-    public partial class FrmCidades : Form
+    public partial class FrmMarcas : Form
     {
-        Cidade c;
-        public FrmCidades()
+        Marca c;
+
+        public FrmMarcas()
         {
             InitializeComponent();
         }
 
-
-        private void FrmCidades_Load(object sender, EventArgs e)
-        {
-            limpaControles();
-            carregarGrid("");
-        }
-        void limpaControles()
-        {
-            txtID.Clear();
-            txtNome.Clear();
-            txtUF.Clear();
-            txtPesquisa.Clear();
-        }
-
-        void carregarGrid(string pesquisa)
-        {
-            c = new Cidade()
-            {
-                nome = pesquisa
-            };
-
-            dgvCidades.DataSource = c.Consultar();
-
-
-        }
-
         private void btnIncluir_Click(object sender, EventArgs e)
         {
-            if (txtNome.Text == string.Empty) return;
-            c = new Cidade()
+            if (txtMarca.Text == string.Empty) return;
+            c = new Marca()
             {
-                nome = txtNome.Text,
-                uf = txtUF.Text,
+                nome = txtMarca.Text
             };
             c.Incluir();
 
@@ -52,26 +26,45 @@ namespace WindowsFormsApp_231024_231098.Views
             carregarGrid("");
         }
 
-        
-
-        private void dgvCidades_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void FrmMarcas_Load(object sender, EventArgs e)
         {
-            if (dgvCidades.RowCount > 0)
+            limpaControles();
+            carregarGrid("");
+        }
+
+        void limpaControles()
+        {
+            txtID.Clear();
+            txtMarca.Clear();
+            txtPesquisa.Clear();
+        }
+
+        void carregarGrid(string pesquisa)
+        {
+            c = new Marca()
             {
-                txtID.Text = dgvCidades.CurrentRow.Cells["id"].Value.ToString();
-                txtNome.Text = dgvCidades.CurrentRow.Cells["nome"].Value.ToString();
-                txtUF.Text = dgvCidades.CurrentRow.Cells["uf"].Value.ToString();
+                nome = pesquisa
+            };
+
+            dgvMarcas.DataSource = c.Consultar();
+        }
+
+        private void dgvMarcas_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvMarcas.RowCount > 0)
+            {
+                txtID.Text = dgvMarcas.CurrentRow.Cells["id"].Value.ToString();
+                txtMarca.Text = dgvMarcas.CurrentRow.Cells["marca"].Value.ToString();
             }
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
             if (txtID.Text == string.Empty) return;
-            c = new Cidade()
+            c = new Marca()
             {
                 id = int.Parse(txtID.Text),
-                nome = txtNome.Text,
-                uf = txtUF.Text,
+                nome = txtMarca.Text
             };
             c.Alterar();
             limpaControles();
@@ -81,14 +74,13 @@ namespace WindowsFormsApp_231024_231098.Views
         private void btnExcluir_Click(object sender, EventArgs e)
         {
             if (txtID.Text == "") return;
-            if (MessageBox.Show("Deseja excluir a cidade?", "Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Deseja excluir a marca?", "Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                c = new Cidade() { id = int.Parse(txtID.Text) };
+                c = new Marca() { id = int.Parse(txtID.Text) };
                 c.Excluir();
                 limpaControles();
                 carregarGrid("");
             }
-
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
