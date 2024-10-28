@@ -65,6 +65,11 @@ namespace WindowsFormsApp_231024_231098
 
                 Comando.ExecuteNonQuery();
 
+                Comando = new MySqlCommand("CREATE TABLE IF NOT EXISTS categorias " +
+                                           "(id int auto_increment primary key, " +
+                                           "categoria char(20))", Conexao);
+
+                Comando.ExecuteNonQuery();
 
 
                 FecharConexao();

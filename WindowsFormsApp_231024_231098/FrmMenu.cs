@@ -27,5 +27,11 @@ namespace WindowsFormsApp_231024_231098
             FrmMarcas form = new FrmMarcas();
             form.Show();
         }
+
+        private void categoriasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCategorias form = new FrmCategorias();
+            form.Show();
+        }
     }
 }
