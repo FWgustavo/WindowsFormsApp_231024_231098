@@ -25,7 +25,6 @@ namespace WindowsFormsApp_231024_231098.Views
             mskCPF.Clear();
             txtRenda.Clear();
             dtpDataNasc.Value = DateTime.Now;
-            picFoto.ImageLocation = "";
             chkVenda.Checked = false;
         }
 
@@ -52,11 +51,6 @@ namespace WindowsFormsApp_231024_231098.Views
             }
         }
 
-        private void picFoto_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void btnIncluir_Click(object sender, EventArgs e)
         {
             if (txtNome.Text == "") return;
@@ -68,12 +62,11 @@ namespace WindowsFormsApp_231024_231098.Views
                 dataNasc = dtpDataNasc.Value,
                 renda = double.Parse(txtRenda.Text),
                 cpf = mskCPF.Text,
-                foto = picFoto.ImageLocation,
                 venda = chkVenda.Checked
             };
             cl.Incluir();
 
-            limpaControles;
+            limpaControles();
             carregarGrid("");
         }
 
@@ -89,8 +82,72 @@ namespace WindowsFormsApp_231024_231098.Views
                 mskCPF.Text = dgvClientes.CurrentRow.Cells["cpf"].Value.ToString();
                 dtpDataNasc.Text = dgvClientes.CurrentRow.Cells["dataNasc"].Value.ToString();
                 txtRenda.Text = dgvClientes.CurrentRow.Cells["renda"].Value.ToString();
-                picFoto.ImageLocation = dgvClientes.CurrentRow.Cells["foto"].Value.ToString();
             }
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            if (txtID.Text == "") return;
+
+            cl = new Cliente()
+            {
+                id = int.Parse(txtID.Text),
+                nome = txtNome.Text,
+                idCidade = (int)cboCidades.SelectedValue,
+                dataNasc = dtpDataNasc.Value,
+                renda = double.Parse(txtRenda.Text),
+                cpf = mskCPF.Text,
+                venda = chkVenda.Checked
+            };
+            cl.Alterar();
+
+            limpaControles();
+            carregarGrid("");
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            limpaControles();
+            carregarGrid("");
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (txtID.Text == "") return;
+
+            if (MessageBox.Show("Deseja excluir o cliente?", "Exclusão",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                cl = new Cliente()
+                {
+                    id = int.Parse(txtID.Text),
+                };
+                cl.Excluir();
+
+                limpaControles();
+                carregarGrid("");
+            }
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            carregarGrid(txtPesquisa.Text);
+        }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        void carregarGrid(string pesquisa)
+        {
+            cl = new Cliente()
+            {
+                nome = pesquisa
+            };
+
+            dgvClientes.DataSource = cl.Consultar();
+
+
         }
     }
 }

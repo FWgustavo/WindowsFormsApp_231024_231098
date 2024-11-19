@@ -17,7 +17,6 @@ namespace WindowsFormsApp_231024_231098.Models
         public DateTime dataNasc { get; set; }
         public double renda { get; set; }
         public string cpf { get; set; }
-        public string foto { get; set; }
         public bool venda { get; set; }
 
         public void Incluir()
@@ -25,14 +24,13 @@ namespace WindowsFormsApp_231024_231098.Models
             try
             {
                 Banco.Conexao.Open();
-                Banco.Comando = new MySqlCommand("INSERT INTO clientes(nome,idCidade,renda,cpf,foto,venda) " +
-                    "VALUES (@nome, @idCidade, @dataNasc, @renda, @cpf, @foto, @venda)", Banco.Conexao);
+                Banco.Comando = new MySqlCommand("INSERT INTO clientes(nome,idCidade,dataNasc, renda,cpf,venda) " +
+                    "VALUES (@nome, @idCidade, @dataNasc, @renda, @cpf, @venda)", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@nome", nome);
                 Banco.Comando.Parameters.AddWithValue("@idCidade", idCidade);
                 Banco.Comando.Parameters.AddWithValue("@dataNasc", dataNasc);
                 Banco.Comando.Parameters.AddWithValue("@renda", renda);
                 Banco.Comando.Parameters.AddWithValue("@cpf", cpf);
-                Banco.Comando.Parameters.AddWithValue("@foto", foto);
                 Banco.Comando.Parameters.AddWithValue("@venda", venda);
                 Banco.Comando.ExecuteNonQuery();
                 Banco.Conexao.Close();
@@ -47,13 +45,12 @@ namespace WindowsFormsApp_231024_231098.Models
             try
             {
                 Banco.Conexao.Open();
-                Banco.Comando = new MySqlCommand("UPDATE clientes SET nome = @nome, idCidade = @idCidade, dataNasc = @dataNasc, renda = @renda, cpf = @cpf, foto = @foto, venda = @venda where id = @id", Banco.Conexao);
+                Banco.Comando = new MySqlCommand("UPDATE clientes SET nome = @nome, idCidade = @idCidade, dataNasc = @dataNasc, renda = @renda, cpf = @cpf, venda = @venda where id = @id", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@nome", nome);
                 Banco.Comando.Parameters.AddWithValue("@idCidade", idCidade);
                 Banco.Comando.Parameters.AddWithValue("@dataNasc", dataNasc);
                 Banco.Comando.Parameters.AddWithValue("@renda", renda);
                 Banco.Comando.Parameters.AddWithValue("@cpf", cpf);
-                Banco.Comando.Parameters.AddWithValue("@foto", foto);
                 Banco.Comando.Parameters.AddWithValue("@venda", venda);
                 Banco.Comando.Parameters.AddWithValue("@id", id);
                 Banco.Comando.ExecuteNonQuery();

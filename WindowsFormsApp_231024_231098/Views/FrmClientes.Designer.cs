@@ -41,7 +41,6 @@
             this.mskCPF = new System.Windows.Forms.MaskedTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dtpDataNasc = new System.Windows.Forms.DateTimePicker();
-            this.picFoto = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtRenda = new System.Windows.Forms.TextBox();
             this.btnIncluir = new System.Windows.Forms.Button();
@@ -54,7 +53,7 @@
             this.btnConsultar = new System.Windows.Forms.Button();
             this.dgvClientes = new System.Windows.Forms.DataGridView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
+            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -169,15 +168,6 @@
             this.dtpDataNasc.Size = new System.Drawing.Size(254, 20);
             this.dtpDataNasc.TabIndex = 12;
             // 
-            // picFoto
-            // 
-            this.picFoto.Location = new System.Drawing.Point(716, 12);
-            this.picFoto.Name = "picFoto";
-            this.picFoto.Size = new System.Drawing.Size(354, 267);
-            this.picFoto.TabIndex = 13;
-            this.picFoto.TabStop = false;
-            this.picFoto.Click += new System.EventHandler(this.picFoto_Click);
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -212,6 +202,7 @@
             this.btnAlterar.TabIndex = 17;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // btnCancelar
             // 
@@ -221,6 +212,7 @@
             this.btnCancelar.TabIndex = 18;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnExcluir
             // 
@@ -230,6 +222,7 @@
             this.btnExcluir.TabIndex = 19;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnFechar
             // 
@@ -239,6 +232,7 @@
             this.btnFechar.TabIndex = 20;
             this.btnFechar.Text = "Fechar";
             this.btnFechar.UseVisualStyleBackColor = true;
+            this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
             // 
             // label8
             // 
@@ -264,6 +258,7 @@
             this.btnConsultar.TabIndex = 23;
             this.btnConsultar.Text = "Procurar";
             this.btnConsultar.UseVisualStyleBackColor = true;
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
             // dgvClientes
             // 
@@ -277,6 +272,10 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // openFileDialog2
+            // 
+            this.openFileDialog2.FileName = "openFileDialog2";
             // 
             // FrmClientes
             // 
@@ -294,7 +293,6 @@
             this.Controls.Add(this.btnIncluir);
             this.Controls.Add(this.txtRenda);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.picFoto);
             this.Controls.Add(this.dtpDataNasc);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.mskCPF);
@@ -309,9 +307,8 @@
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.label1);
             this.Name = "FrmClientes";
-            this.Text = "FrmClientes";
+            this.Text = "Formulário de clientes";
             this.Load += new System.EventHandler(this.FrmClientes_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -333,7 +330,6 @@
         private System.Windows.Forms.MaskedTextBox mskCPF;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dtpDataNasc;
-        private System.Windows.Forms.PictureBox picFoto;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtRenda;
         private System.Windows.Forms.Button btnIncluir;
@@ -346,5 +342,6 @@
         private System.Windows.Forms.Button btnConsultar;
         private System.Windows.Forms.DataGridView dgvClientes;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog2;
     }
 }
