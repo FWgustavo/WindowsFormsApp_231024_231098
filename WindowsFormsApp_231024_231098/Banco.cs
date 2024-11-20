@@ -20,7 +20,7 @@ namespace WindowsFormsApp_231024_231098
         {
             try
             {
-                Conexao = new MySqlConnection("server=localhost;port=3307;uid=root;pwd=etecjau");
+                Conexao = new MySqlConnection("server=localhost;port=3307;uid=root;pwd=1234");
 
                 Conexao.Open();
             }
