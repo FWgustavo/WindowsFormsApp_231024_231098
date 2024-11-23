@@ -39,5 +39,11 @@ namespace WindowsFormsApp_231024_231098
             FrmClientes form = new FrmClientes();
             form.Show();
         }
+
+        private void cadastrosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmProdutos form = new FrmProdutos();
+            form.Show();
+        }
     }
 }

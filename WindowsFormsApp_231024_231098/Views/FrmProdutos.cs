@@ -24,7 +24,33 @@ namespace WindowsFormsApp_231024_231098.Views
 
         private void btnIncluir_Click(object sender, EventArgs e)
         {
-            
+            if (txtDescricao.Text == "") return;
+
+            p = new Produto()
+            {
+                descricao = txtDescricao.Text,
+                idCategoria = (int)cboCategoria.SelectedValue,
+                idMarca = (int)cboMarca.SelectedValue,
+                estoque = int.Parse(txtEstoque.Text),
+                valorVenda = int.Parse(txtVlrVenda.Text),
+            };
+            p.Incluir();
+
+            limpaControles();
+            carregarGrid("");
+        }
+
+        private void dgvProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvProdutos.RowCount > 0)
+            {
+                txtID.Text = dgvProdutos.CurrentRow.Cells["id"].Value.ToString();
+                txtDescricao.Text = dgvProdutos.CurrentRow.Cells["descricao"].Value.ToString();
+                cboCategoria.Text = dgvProdutos.CurrentRow.Cells["categoria"].Value.ToString();
+                cboMarca.Text = dgvProdutos.CurrentRow.Cells["marca"].Value.ToString();
+                txtEstoque.Text = dgvProdutos.CurrentRow.Cells["estoque"].Value.ToString();
+                txtVlrVenda.Text = dgvProdutos.CurrentRow.Cells["valorVenda"].Value.ToString();
+            }
         }
 
         void limpaControles()
@@ -54,13 +80,66 @@ namespace WindowsFormsApp_231024_231098.Views
             carregarGrid("");
         }
 
-        void carregarGrid(string pesquisa)
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            if (txtID.Text == "") return;
+
+            p = new Produto()
+            {
+                id = int.Parse(txtID.Text),
+                descricao = txtDescricao.Text,
+                idCategoria = (int)cboCategoria.SelectedValue,
+                idMarca = (int)cboMarca.SelectedValue,
+                estoque = int.Parse(txtEstoque.Text),
+                valorVenda = int.Parse(txtVlrVenda.Text),
+            };
+            p.Alterar();
+
+            limpaControles();
+            carregarGrid("");
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            limpaControles();
+            carregarGrid("");
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (txtID.Text == "") return;
+
+            if (MessageBox.Show("Deseja excluir o cliente?", "Exclusão",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                p = new Produto()
+                {
+                    id = int.Parse(txtID.Text),
+                };
+                p.Excluir();
+
+                limpaControles();
+                carregarGrid("");
+            }
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            carregarGrid(txtConsulta.Text);
+        }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        void carregarGrid(string consulta)
         {
             p = new Produto()
             {
-                descricao = pesquisa
+                descricao = consulta,
             };
-
             dgvProdutos.DataSource = p.Consultar();
         }
     }
