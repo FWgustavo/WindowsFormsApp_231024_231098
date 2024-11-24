@@ -24,16 +24,16 @@ namespace WindowsFormsApp_231024_231098.Models
         {
             try
             {
-                Banco.Conexao.Open();
+                Banco.AbrirConexao();
                 Banco.Comando = new MySqlCommand("INSERT INTO produtos(descricao,idCategoria,idMarca, estoque,valorVenda) " +
-                    "VALUES (@descricao, @idCategoria, @idMarca, @estoque, @valorVenda)", Banco.Conexao);
+                    " VALUES (@descricao, @idCategoria, @idMarca, @estoque, @valorVenda)", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@descricao", descricao);
                 Banco.Comando.Parameters.AddWithValue("@idCategoria", idCategoria);
                 Banco.Comando.Parameters.AddWithValue("@idMarca", idMarca);
                 Banco.Comando.Parameters.AddWithValue("@estoque", estoque);
                 Banco.Comando.Parameters.AddWithValue("@valorVenda", valorVenda);
                 Banco.Comando.ExecuteNonQuery();
-                Banco.Conexao.Close();
+                Banco.FecharConexao();
             }
             catch(Exception e)
             {
@@ -53,7 +53,7 @@ namespace WindowsFormsApp_231024_231098.Models
                 Banco.Comando.Parameters.AddWithValue("@valorVenda", valorVenda);
                 Banco.Comando.Parameters.AddWithValue("@id", id);
                 Banco.Comando.ExecuteNonQuery();
-                Banco.Conexao.Close();
+                Banco.FecharConexao();
             }
             catch (Exception e)
             {
@@ -64,11 +64,11 @@ namespace WindowsFormsApp_231024_231098.Models
         {
             try
             {
-                Banco.Conexao.Open();
+                Banco.AbrirConexao();
                 Banco.Comando = new MySqlCommand("delete from produtos where id = @id", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@id", id);
                 Banco.Comando.ExecuteNonQuery();
-                Banco.Conexao.Close();
+                Banco.FecharConexao();
             }
             catch (Exception e)
             {
@@ -80,7 +80,9 @@ namespace WindowsFormsApp_231024_231098.Models
             try
             {
                 Banco.AbrirConexao();
-                Banco.Comando = new MySqlCommand("Select * from produtos where marca like @descricao " + " order by marca", Banco.Conexao);
+                Banco.Comando = new MySqlCommand("SELECT p.*, m.marca marca, c.categoria categoria "+
+                                                 " FROM produtos p inner join marcas m inner join categorias c on m.id=p.idMarca and c.id=p.idCategoria " +
+                                                 " where p.descricao like ?Descricao order by p.descricao", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@descricao", descricao + "%");
                 Banco.Adaptador = new MySqlDataAdapter(Banco.Comando);
                 Banco.datTabela = new DataTable();

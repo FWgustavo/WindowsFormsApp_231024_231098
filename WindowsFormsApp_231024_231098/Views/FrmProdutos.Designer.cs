@@ -154,7 +154,7 @@
             this.groupBox1.Controls.Add(this.txtConsulta);
             this.groupBox1.Location = new System.Drawing.Point(47, 346);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(510, 263);
+            this.groupBox1.Size = new System.Drawing.Size(766, 263);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Digite o nome do produto para pesquisar";
@@ -164,13 +164,13 @@
             this.dgvProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProdutos.Location = new System.Drawing.Point(7, 70);
             this.dgvProdutos.Name = "dgvProdutos";
-            this.dgvProdutos.Size = new System.Drawing.Size(487, 150);
+            this.dgvProdutos.Size = new System.Drawing.Size(723, 150);
             this.dgvProdutos.TabIndex = 2;
-            this.dgvProdutos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutos_CellContentClick);
+            this.dgvProdutos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutos_CellClick);
             // 
             // btnConsultar
             // 
-            this.btnConsultar.Location = new System.Drawing.Point(419, 29);
+            this.btnConsultar.Location = new System.Drawing.Point(655, 29);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(75, 23);
             this.btnConsultar.TabIndex = 1;
@@ -182,7 +182,7 @@
             // 
             this.txtConsulta.Location = new System.Drawing.Point(7, 29);
             this.txtConsulta.Name = "txtConsulta";
-            this.txtConsulta.Size = new System.Drawing.Size(384, 20);
+            this.txtConsulta.Size = new System.Drawing.Size(614, 20);
             this.txtConsulta.TabIndex = 0;
             // 
             // label1

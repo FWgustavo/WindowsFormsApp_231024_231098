@@ -40,7 +40,7 @@ namespace WindowsFormsApp_231024_231098
             form.Show();
         }
 
-        private void cadastrosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void produtoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmProdutos form = new FrmProdutos();
             form.Show();

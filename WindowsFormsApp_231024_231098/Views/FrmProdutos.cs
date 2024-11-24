@@ -31,8 +31,8 @@ namespace WindowsFormsApp_231024_231098.Views
                 descricao = txtDescricao.Text,
                 idCategoria = (int)cboCategoria.SelectedValue,
                 idMarca = (int)cboMarca.SelectedValue,
-                estoque = int.Parse(txtEstoque.Text),
-                valorVenda = int.Parse(txtVlrVenda.Text),
+                estoque = decimal.Parse(txtEstoque.Text),
+                valorVenda = decimal.Parse(txtVlrVenda.Text),
             };
             p.Incluir();
 
@@ -40,18 +40,6 @@ namespace WindowsFormsApp_231024_231098.Views
             carregarGrid("");
         }
 
-        private void dgvProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgvProdutos.RowCount > 0)
-            {
-                txtID.Text = dgvProdutos.CurrentRow.Cells["id"].Value.ToString();
-                txtDescricao.Text = dgvProdutos.CurrentRow.Cells["descricao"].Value.ToString();
-                cboCategoria.Text = dgvProdutos.CurrentRow.Cells["categoria"].Value.ToString();
-                cboMarca.Text = dgvProdutos.CurrentRow.Cells["marca"].Value.ToString();
-                txtEstoque.Text = dgvProdutos.CurrentRow.Cells["estoque"].Value.ToString();
-                txtVlrVenda.Text = dgvProdutos.CurrentRow.Cells["valorVenda"].Value.ToString();
-            }
-        }
 
         void limpaControles()
         {
@@ -68,16 +56,19 @@ namespace WindowsFormsApp_231024_231098.Views
         {
             m = new Marca();
             cboMarca.DataSource = m.Consultar();
-            cboMarca.DisplayMember = "nome";
+            cboMarca.DisplayMember = "marca";
             cboMarca.ValueMember = "id";
 
             c = new Categoria();
             cboCategoria.DataSource = c.Consultar();
-            cboCategoria.DisplayMember = "nome";
+            cboCategoria.DisplayMember = "categoria";
             cboCategoria.ValueMember = "id";
 
             limpaControles();
             carregarGrid("");
+
+            dgvProdutos.Columns["idMarca"].Visible = false;
+            dgvProdutos.Columns["idCategoria"].Visible = false;
         }
 
 
@@ -91,8 +82,8 @@ namespace WindowsFormsApp_231024_231098.Views
                 descricao = txtDescricao.Text,
                 idCategoria = (int)cboCategoria.SelectedValue,
                 idMarca = (int)cboMarca.SelectedValue,
-                estoque = int.Parse(txtEstoque.Text),
-                valorVenda = int.Parse(txtVlrVenda.Text),
+                estoque = decimal.Parse(txtEstoque.Text),
+                valorVenda = decimal.Parse(txtVlrVenda.Text),
             };
             p.Alterar();
 
@@ -142,5 +133,19 @@ namespace WindowsFormsApp_231024_231098.Views
             };
             dgvProdutos.DataSource = p.Consultar();
         }
+
+        private void dgvProdutos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvProdutos.RowCount > 0)
+            {
+                txtID.Text = dgvProdutos.CurrentRow.Cells["id"].Value.ToString();
+                txtDescricao.Text = dgvProdutos.CurrentRow.Cells["descricao"].Value.ToString();
+                cboCategoria.Text = dgvProdutos.CurrentRow.Cells["categoria"].Value.ToString();
+                cboMarca.Text = dgvProdutos.CurrentRow.Cells["marca"].Value.ToString();
+                txtEstoque.Text = dgvProdutos.CurrentRow.Cells["estoque"].Value.ToString();
+                txtVlrVenda.Text = dgvProdutos.CurrentRow.Cells["valorVenda"].Value.ToString();
+            }
+        }
+
     }
 }

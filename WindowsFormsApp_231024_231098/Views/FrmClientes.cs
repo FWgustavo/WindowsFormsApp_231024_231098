@@ -147,7 +147,6 @@ namespace WindowsFormsApp_231024_231098.Views
 
             dgvClientes.DataSource = cl.Consultar();
 
-
         }
     }
 }
