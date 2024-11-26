@@ -157,7 +157,7 @@
             this.groupBox1.Size = new System.Drawing.Size(766, 263);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Digite o nome do produto para pesquisar";
+            this.groupBox1.Text = "Digite a descrição do produto para pesquisar";
             // 
             // dgvProdutos
             // 

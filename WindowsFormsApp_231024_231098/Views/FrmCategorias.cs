@@ -81,7 +81,7 @@ namespace WindowsFormsApp_231024_231098.Views
         {
 
             if (txtID.Text == "") return;
-            if (MessageBox.Show("Deseja excluir a marca?", "Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Deseja excluir a categoria?", "Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 c = new Categoria() { id = int.Parse(txtID.Text) };
                 c.Excluir();

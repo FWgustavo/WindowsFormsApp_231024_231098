@@ -101,7 +101,7 @@ namespace WindowsFormsApp_231024_231098.Views
         {
             if (txtID.Text == "") return;
 
-            if (MessageBox.Show("Deseja excluir o cliente?", "Exclusão",
+            if (MessageBox.Show("Deseja excluir o Produto?", "Exclusão",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 p = new Produto()
